@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculadorImpostoRenda.API", "CalculadorImpostoRenda.API\CalculadorImpostoRenda.API.csproj", "{B950EEF8-5A94-465C-BF18-49C962E89A3E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculadorImpostoRenda.infra", "CalculadorImpostoRenda.infra\CalculadorImpostoRenda.infra.csproj", "{D7E8B020-C5B0-4B31-9850-378A1322B39D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculadorImpostoRenda.Dominio", "CalculadorImpostoRenda.Dominio\CalculadorImpostoRenda.Dominio.csproj", "{8797F274-D3A4-4EBD-9DBE-F08F4F6C341A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculadorImpostoRenda.Tests", "CalculadorImpostoRenda.Tests\CalculadorImpostoRenda.Tests.csproj", "{290FE952-F29E-45C9-B936-1B0C9965DEC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B950EEF8-5A94-465C-BF18-49C962E89A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B950EEF8-5A94-465C-BF18-49C962E89A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B950EEF8-5A94-465C-BF18-49C962E89A3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B950EEF8-5A94-465C-BF18-49C962E89A3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7E8B020-C5B0-4B31-9850-378A1322B39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7E8B020-C5B0-4B31-9850-378A1322B39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7E8B020-C5B0-4B31-9850-378A1322B39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7E8B020-C5B0-4B31-9850-378A1322B39D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8797F274-D3A4-4EBD-9DBE-F08F4F6C341A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8797F274-D3A4-4EBD-9DBE-F08F4F6C341A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8797F274-D3A4-4EBD-9DBE-F08F4F6C341A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8797F274-D3A4-4EBD-9DBE-F08F4F6C341A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{290FE952-F29E-45C9-B936-1B0C9965DEC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{290FE952-F29E-45C9-B936-1B0C9965DEC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{290FE952-F29E-45C9-B936-1B0C9965DEC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{290FE952-F29E-45C9-B936-1B0C9965DEC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39F8A22B-7EF3-40EA-9034-40EEA5A138E6}
+	EndGlobalSection
+EndGlobal
