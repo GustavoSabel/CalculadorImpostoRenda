@@ -1,4 +1,7 @@
+using CalculadorImpostoRenda.Dominio.Handlers;
+using CalculadorImpostoRenda.Dominio.Repository;
 using CalculadorImpostoRenda.infra;
+using CalculadorImpostoRenda.infra.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +26,10 @@ namespace CalculadorImpostoRenda
             services.AddControllers();
 
             services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IContribuinteRepository, ContribuinteRepository>();
+            services.AddScoped<IContribuinteRepositoryRead, ContribuinteRepository>();
+            services.AddScoped<ContribuinteHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

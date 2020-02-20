@@ -1,4 +1,4 @@
-﻿using CalculadorImpostoRenda.Dominio.Models;
+﻿using CalculadorImpostoRenda.Dominio.Entidades;
 using Microsoft.EntityFrameworkCore;
 
 namespace CalculadorImpostoRenda.infra
@@ -24,6 +24,8 @@ namespace CalculadorImpostoRenda.infra
                 b.Property(x => x.CPF)
                     .HasMaxLength(Contribuinte.TamanhoMaximoCPF)
                     .IsRequired();
+
+                b.HasIndex(x => x.CPF).IsUnique();
             });
         }
     }
