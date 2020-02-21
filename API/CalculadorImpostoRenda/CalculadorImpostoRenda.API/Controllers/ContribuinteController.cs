@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CalculadorImpostoRenda.Dominio.Commands;
+﻿using CalculadorImpostoRenda.Dominio.Commands;
 using CalculadorImpostoRenda.Dominio.Entidades;
 using CalculadorImpostoRenda.Dominio.Handlers;
 using CalculadorImpostoRenda.Dominio.Repository;
-using CalculadorImpostoRenda.infra.Repository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CalculadorImpostoRenda.API.Controllers
 {
@@ -26,25 +22,31 @@ namespace CalculadorImpostoRenda.API.Controllers
         [HttpGet("{id}")]
         public ValueTask<Contribuinte> Get(int id, [FromServices] IContribuinteRepositoryRead repository)
         {
-            return repository.Obter(id);
+            return repository.ObterAsync(id);
         }
 
         [HttpPost]
-        public Task Post([FromBody] InserirContribuinteCommand command, [FromServices] ContribuinteHandler handler)
+        public ValueTask<Contribuinte> Post([FromBody] InserirContribuinteCommand command, [FromServices] ContribuinteHandler handler)
         {
-            return handler.Inserir(command);
+            return handler.HandleAsync(command);
         }
 
         [HttpPut]
-        public Task Put([FromBody] AtualizarContribuinteCommand command, [FromServices] ContribuinteHandler handler)
+        public ValueTask Put([FromBody] AtualizarContribuinteCommand command, [FromServices] ContribuinteHandler handler)
         {
-            return handler.Atualizar(command);
+            return handler.HandleAsync(command);
         }
 
         [HttpDelete("{id}")]
-        public Task Delete(int id, [FromServices] ContribuinteHandler handler)
+        public ValueTask Delete(int id, [FromServices] ContribuinteHandler handler)
         {
-            return handler.Excluir(new ExcluirContribuinteCommand() { Id = id });
+            return handler.HandleAsync(new ExcluirContribuinteCommand() { Id = id });
+        }
+
+        [HttpPost("calcularImpostoRenda")]
+        public ValueTask<IReadOnlyList<Contribuinte>> Post([FromBody] CalcularImpostoRendaCommand command, [FromServices] ContribuinteHandler handler)
+        {
+            return handler.CalcularImpostoRenda(command);
         }
     }
 }

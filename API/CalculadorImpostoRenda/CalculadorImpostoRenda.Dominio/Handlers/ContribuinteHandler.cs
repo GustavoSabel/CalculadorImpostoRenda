@@ -1,7 +1,10 @@
 ﻿using CalculadorImpostoRenda.Dominio.Commands;
+using CalculadorImpostoRenda.Dominio.Entidades;
+using CalculadorImpostoRenda.Dominio.Helpers;
 using CalculadorImpostoRenda.Dominio.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CalculadorImpostoRenda.Dominio.Handlers
@@ -15,21 +18,23 @@ namespace CalculadorImpostoRenda.Dominio.Handlers
             _contribuinteRepository = contribuinteRepository;
         }
 
-        public async ValueTask Inserir(InserirContribuinteCommand command)
+        public async ValueTask<Contribuinte> HandleAsync(InserirContribuinteCommand command)
         {
-            _contribuinteRepository.InserirOuAtualizar(new Entidades.Contribuinte
+            var contribuinte = new Contribuinte
             {
                 CPF = command.Cpf,
                 Nome = command.Nome,
                 NumeroDependentes = command.NumeroDependentes,
                 RendaMensalBruta = command.RendaMensalBruta
-            });
+            };
+            _contribuinteRepository.InserirOuAtualizar(contribuinte);
             await _contribuinteRepository.SaveChangesAsync();
+            return contribuinte;
         }
 
-        public async ValueTask Atualizar(AtualizarContribuinteCommand command)
+        public async ValueTask HandleAsync(AtualizarContribuinteCommand command)
         {
-            var contribuinte = await _contribuinteRepository.Obter(command.Id);
+            var contribuinte = await _contribuinteRepository.ObterAsync(command.Id);
             if (contribuinte == null)
                 throw new Exception($"Contribuinte {command.Id} não encontrado");
 
@@ -41,20 +46,20 @@ namespace CalculadorImpostoRenda.Dominio.Handlers
             await _contribuinteRepository.SaveChangesAsync();
         }
 
-        public async ValueTask Excluir(ExcluirContribuinteCommand excluirContribuinteCommand)
+        public async ValueTask HandleAsync(ExcluirContribuinteCommand excluirContribuinteCommand)
         {
-            await _contribuinteRepository.Excluir(excluirContribuinteCommand.Id);
+            await _contribuinteRepository.ExcluirAsync(excluirContribuinteCommand.Id);
             await _contribuinteRepository.SaveChangesAsync();
         }
 
-        public async ValueTask CalcularImpostoRenda(InserirContribuinteCommand command)
+        public async ValueTask<IReadOnlyList<Contribuinte>> CalcularImpostoRenda(CalcularImpostoRendaCommand command)
         {
             var contribuintes = await _contribuinteRepository.Todos().ToListAsync();
 
             foreach (var contrib in contribuintes)
-            {
+                contrib.ImpostoRenda = CalculadoraImpostoRenda.Calcular(command.SalarioMinimo, contrib);
 
-            }
+            return contribuintes;
         }
     }
 }

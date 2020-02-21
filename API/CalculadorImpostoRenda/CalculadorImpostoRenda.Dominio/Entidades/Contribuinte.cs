@@ -13,5 +13,6 @@ namespace CalculadorImpostoRenda.Dominio.Entidades
 
         public int NumeroDependentes { get; set; }
         public decimal RendaMensalBruta { get; set; }
+        public decimal? ImpostoRenda { get; set; }
     }
 }

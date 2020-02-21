@@ -14,7 +14,7 @@ namespace CalculadorImpostoRenda.infra.Repository
             _context = context;
         }
 
-        public ValueTask<Contribuinte> Obter(int id)
+        public ValueTask<Contribuinte> ObterAsync(int id)
         {
             return _context.Contribuintes.FindAsync(id);
         }
@@ -27,9 +27,9 @@ namespace CalculadorImpostoRenda.infra.Repository
                 _context.Contribuintes.Update(entidade);
         }
 
-        public async Task Excluir(int id)
+        public async Task ExcluirAsync(int id)
         {
-            var contribuinte = await Obter(id);
+            var contribuinte = await ObterAsync(id);
             _context.Contribuintes.Remove(contribuinte);
         }
 

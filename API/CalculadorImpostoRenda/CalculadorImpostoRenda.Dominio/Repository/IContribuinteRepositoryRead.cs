@@ -6,7 +6,7 @@ namespace CalculadorImpostoRenda.Dominio.Repository
 {
     public interface IContribuinteRepositoryRead
     {
-        ValueTask<Contribuinte> Obter(int id);
+        ValueTask<Contribuinte> ObterAsync(int id);
         IQueryable<Contribuinte> Todos();
     }
 }

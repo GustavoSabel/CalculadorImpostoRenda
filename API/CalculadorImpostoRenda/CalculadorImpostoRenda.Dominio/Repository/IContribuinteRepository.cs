@@ -6,7 +6,7 @@ namespace CalculadorImpostoRenda.Dominio.Repository
 {
     public interface IContribuinteRepository : IContribuinteRepositoryRead
     {
-        Task Excluir(int id);
+        Task ExcluirAsync(int id);
         void InserirOuAtualizar(Contribuinte entidade);
         Task SaveChangesAsync();
     }
