@@ -21,4 +21,8 @@ Para executar a API vá até a pasta `\API\CalculadorImpostoRenda\CalculadorImpo
 
 ## Como executar o Front
 
-Vá até a pasta `\Front\calcular_imposto_renda` e execute o comando `npm start`
+Vá até a pasta `\Front\calcular_imposto_renda`
+
+Primeiro execute o comando `npm i` para instalar as dependencias
+
+Depos execute o comando `npm start` para iniciar a aplicação
