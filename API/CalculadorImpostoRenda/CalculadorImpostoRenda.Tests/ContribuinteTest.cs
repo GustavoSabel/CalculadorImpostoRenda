@@ -70,7 +70,7 @@ namespace CalculadorImpostoRenda.Tests
             var contribuinte = await InserirContribuinteAsync(rendaMensalBruta: 10000);
 
             //Realizar o cálculo
-            var resultado = await _handler.CalcularImpostoRenda(new CalcularImpostoRendaCommand { SalarioMinimo = 1000 });
+            var resultado = await _handler.HandleAsync(new CalcularImpostoRendaCommand { SalarioMinimo = 1000 });
             Assert.Equal(1, resultado.Count);
             Assert.True(resultado[0].ImpostoRenda > 0);
 

@@ -19,16 +19,22 @@ function Contribuinte() {
    }
 
    const calcular = async () => {
-      var result = await ContribuinteService.calcular();
-      if(result)
-         setContribuintes(result);
+      var salario = prompt("Salário mínimo");
+      salario = parseFloat(salario);
+      if(!salario) {
+         alert("Salário informado é inválido. Informe somente números. Ex: \"1500.75\"");
+      } else {
+         var result = await ContribuinteService.calcular(salario);
+         if(result)
+            setContribuintes(result);
+      }
    };
 
    return (<Container fluid>
       <Formulario atualizarLista={atualizarLista}/>
       <br/>
       <Lista contribuintes={contribuintes}/>
-      <Button onClick={calcular}>Calcular <i className="fas fa-calculator"></i></Button>
+      <Button onClick={calcular}>Calcular IR<i className="fas fa-calculator"></i></Button>
    </Container>)
 }
 

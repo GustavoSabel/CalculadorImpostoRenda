@@ -24,8 +24,8 @@ function Lista({contribuintes}) {
          <td>{contrib.nome}</td>
          <td>{contrib.cpf}</td>
          <td>{contrib.numeroDependentes}</td>
-         <td>{contrib.rendaMensalBruta}</td>
-         <td>{contrib.impostoRenda && 'R$' + contrib.impostoRenda?.toFixed(2)}</td>
+         <td>R${contrib.rendaMensalBruta.toFixed(2)}</td>
+         <td>{contrib.impostoRenda !== null && 'R$' + contrib.impostoRenda?.toFixed(2)}</td>
       </tr>)
    }
 }

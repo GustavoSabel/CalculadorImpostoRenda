@@ -24,7 +24,7 @@ namespace CalculadorImpostoRenda.API.Extensions
                         {
                             context.Response.StatusCode = 400;
                             context.Response.ContentType = "application/json";
-                            await context.Response.WriteAsync(JsonConvert.SerializeObject(new { Mensagem = validacaoEntidade.Message }));
+                            await context.Response.WriteAsync(JsonConvert.SerializeObject(new { mensagem = validacaoEntidade.Message }));
                             return;
                         }
                         else
@@ -32,8 +32,8 @@ namespace CalculadorImpostoRenda.API.Extensions
                             context.Response.StatusCode = 500;
                             context.Response.ContentType = "application/json";
                             await context.Response.WriteAsync(JsonConvert.SerializeObject(new {
-                                Mensagem = exceptionHandlerPathFeature.Error.Message, 
-                                Exception = exceptionHandlerPathFeature.Error.ToString() 
+                                mensagem = exceptionHandlerPathFeature.Error.Message, 
+                                exception = exceptionHandlerPathFeature.Error.ToString() 
                             }));
                             return;
                         }

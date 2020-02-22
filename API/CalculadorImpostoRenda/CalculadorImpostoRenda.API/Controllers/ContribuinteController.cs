@@ -46,7 +46,7 @@ namespace CalculadorImpostoRenda.API.Controllers
         [HttpPost("calcularImpostoRenda")]
         public ValueTask<IReadOnlyList<Contribuinte>> Post([FromBody] CalcularImpostoRendaCommand command, [FromServices] ContribuinteHandler handler)
         {
-            return handler.CalcularImpostoRenda(command);
+            return handler.HandleAsync(command);
         }
     }
 }

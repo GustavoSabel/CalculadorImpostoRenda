@@ -41,7 +41,7 @@ namespace CalculadorImpostoRenda.Dominio.Handlers
             if (string.IsNullOrWhiteSpace(command.Nome))
                 throw new ValidacaoException("Nome é obrigatório");
 
-            if(command.RendaMensalBruta <= 0)
+            if (command.RendaMensalBruta <= 0)
                 throw new ValidacaoException("Renda Mensal Bruta é obrigatória");
 
             if (string.IsNullOrWhiteSpace(command.Cpf))
@@ -76,12 +76,14 @@ namespace CalculadorImpostoRenda.Dominio.Handlers
             await _contribuinteRepository.SaveChangesAsync();
         }
 
-        public async ValueTask<IReadOnlyList<Contribuinte>> CalcularImpostoRenda(CalcularImpostoRendaCommand command)
+        public async ValueTask<IReadOnlyList<Contribuinte>> HandleAsync(CalcularImpostoRendaCommand command)
         {
             var contribuintes = await _contribuinteRepository.Todos().ToListAsync();
 
             foreach (var contrib in contribuintes)
                 contrib.ImpostoRenda = CalculadoraImpostoRenda.Calcular(command.SalarioMinimo, contrib);
+
+            await _contribuinteRepository.SaveChangesAsync();
 
             return contribuintes;
         }

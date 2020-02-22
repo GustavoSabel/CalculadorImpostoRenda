@@ -42,8 +42,14 @@ const ContribuinteService = {
 }
 
 function tratarErro(error){
-   console.log(error.response);
-   alert("Ocorreu um erro");
+   if(error?.response?.data?.mensagem) {
+      alert(error.response.data.mensagem);
+      if(error.response.data.Exception)
+         alert(error.response.data.Exception);
+   } else {
+      console.log(error.response);
+      alert("Ocorreu um erro");
+   }
 }
 
 export default ContribuinteService;
