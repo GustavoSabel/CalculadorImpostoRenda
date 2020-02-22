@@ -8,5 +8,6 @@ namespace CalculadorImpostoRenda.Dominio.Repository
     {
         ValueTask<Contribuinte> ObterAsync(int id);
         IQueryable<Contribuinte> Todos();
+        Task<Contribuinte> ObterPeloCpfAsync(string cpf);
     }
 }

@@ -10,7 +10,7 @@ namespace CalculadorImpostoRenda.Tests
 {
     public class ContribuinteTest
     {
-        private readonly Context _contexto;
+        private readonly ApplicationDbContext _contexto;
         private readonly ContribuinteRepository _rep;
         private readonly ContribuinteHandler _handler;
 

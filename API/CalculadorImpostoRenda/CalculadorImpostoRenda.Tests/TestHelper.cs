@@ -6,12 +6,12 @@ namespace CalculadorImpostoRenda.Tests
 {
     class TestHelper
     {
-        public static Context CriarContexto()
+        public static ApplicationDbContext CriarContexto()
         {
-            return new Context(CreateNewContextOptions());
+            return new ApplicationDbContext(CreateNewContextOptions());
         }
 
-        private static DbContextOptions<Context> CreateNewContextOptions()
+        private static DbContextOptions<ApplicationDbContext> CreateNewContextOptions()
         {
             // Create a fresh service provider, and therefore a fresh 
             // InMemory database instance.
@@ -21,7 +21,7 @@ namespace CalculadorImpostoRenda.Tests
 
             // Create a new options instance telling the context to use an
             // InMemory database and the new service provider.
-            var builder = new DbContextOptionsBuilder<Context>();
+            var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
             builder.UseInMemoryDatabase("DB")
                    .UseInternalServiceProvider(serviceProvider);
 

@@ -1,5 +1,6 @@
 ﻿using CalculadorImpostoRenda.Dominio.Entidades;
 using CalculadorImpostoRenda.Dominio.Repository;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,9 +8,9 @@ namespace CalculadorImpostoRenda.infra.Repository
 {
     public class ContribuinteRepository : IContribuinteRepository
     {
-        private readonly Context _context;
+        private readonly ApplicationDbContext _context;
 
-        public ContribuinteRepository(Context context)
+        public ContribuinteRepository(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -41,6 +42,11 @@ namespace CalculadorImpostoRenda.infra.Repository
         public IQueryable<Contribuinte> Todos()
         {
             return _context.Contribuintes.AsQueryable();
+        }
+
+        public Task<Contribuinte> ObterPeloCpfAsync(string cpf)
+        {
+            return _context.Contribuintes.FirstOrDefaultAsync(x => x.CPF == cpf);
         }
     }
 }

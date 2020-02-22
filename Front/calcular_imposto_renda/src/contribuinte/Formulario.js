@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
-
-import {Form, Container, Button, Card, Row, Col} from 'react-bootstrap';
+import ContribuinteService from '../services/ContribuinteService'
+import {Form, Button, Row, Col} from 'react-bootstrap';
 
 function Formulario({atualizarLista}){
-    
-    const [nome, setNome] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [dependentes, setDependentes] = useState(0);
-    const [salarioBruto, setSalarioBruto] = useState(0);
-    
-    async function handleSubmit(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        atualizarLista();
-      //   var result = await AutenticadorService.autenticar(usuario, senha);
-      //   if(result){
-      //       props.logadoComSucesso();
-      //   }
-    };
+   
+   const [nome, setNome] = useState('');
+   const [cpf, setCpf] = useState('');
+   const [numeroDependentes, setNumeroDependentes] = useState(0);
+   const [rendaMensalBruta, setRendaMensalBruta] = useState(0);
+   
+   async function handleSubmit(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var result = await ContribuinteService.inserir(({
+         nome,
+         cpf,
+         numeroDependentes: parseInt(numeroDependentes),
+         rendaMensalBruta: parseFloat(rendaMensalBruta)
+      }));
+      if(result)
+         atualizarLista();
+   };
 
-    return (<div>
+   return (<div>
       <Form onSubmit={handleSubmit}>
-
          <Row>
             <Col sm="6" xl="4">
                <Form.Group controlId="Nome">
@@ -52,31 +54,31 @@ function Formulario({atualizarLista}){
                      type="number" 
                      step="1"
                      placeholder="Dependentes" 
-                     value={dependentes}
-                     onChange={e => setDependentes(e.currentTarget.value)}>
+                     value={numeroDependentes}
+                     onChange={e => setNumeroDependentes(e.currentTarget.value)}>
                   </Form.Control>
                </Form.Group>
             </Col>
             <Col sm="6" xl="3">
-               <Form.Group controlId="salarioBruto">
+               <Form.Group controlId="rendaMensalBruta">
                   <Form.Label>Salário Bruto</Form.Label>
                   <Form.Control 
                      type="number" 
                      placeholder="Salário Bruto" 
-                     value={salarioBruto}
-                     onChange={e => setSalarioBruto(e.currentTarget.value)}>
+                     value={rendaMensalBruta}
+                     onChange={e => setRendaMensalBruta(e.currentTarget.value)}>
                   </Form.Control>
                </Form.Group>
             </Col>
             <Col sm="12">
                <Button type="submit">
                   Cadastrar
-                  <i style={{paddingLeft: 10}} className="fas fa-plus"></i>
+                  <i className="fas fa-plus"></i>
                </Button>
             </Col>
          </Row>
       </Form>
-    </div>)
+   </div>)
 }
 
 export default Formulario;
