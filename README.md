@@ -19,10 +19,12 @@ Por padrão a string de conexão é `"Server=(local)\\SQLEXPRESS;Database=Calcul
 
 Para executar a API vá até a pasta `\API\CalculadorImpostoRenda\CalculadorImpostoRenda.API` e execute o comando `dotnet run`
 
+Agora se você abrir o endereço http://localhost:5000/swagger/index.html deve abrir uma página com os endpoints da API
+
 ## Como executar o Front
 
 Vá até a pasta `\Front\calcular_imposto_renda`
 
 Primeiro execute o comando `npm i` para instalar as dependencias
 
-Depos execute o comando `npm start` para iniciar a aplicação
+Depos execute o comando `npm start` para iniciar a aplicação. A página deve abrir automaticamente no navegador
