@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {Form, Container, Button, Card, Row, Col} from 'react-bootstrap';
 
-function FormularioContribuinte(){
+function Formulario({atualizarLista}){
     
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
@@ -12,6 +12,7 @@ function FormularioContribuinte(){
     async function handleSubmit(e) {
         e.preventDefault();
         e.stopPropagation();
+        atualizarLista();
       //   var result = await AutenticadorService.autenticar(usuario, senha);
       //   if(result){
       //       props.logadoComSucesso();
@@ -78,4 +79,4 @@ function FormularioContribuinte(){
     </div>)
 }
 
-export default FormularioContribuinte;
+export default Formulario;

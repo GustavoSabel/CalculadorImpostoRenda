@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Contribuintes from './Contribuinte/Contribuintes';
+import Contribuinte from './contribuinte';
 
 function App() {
-  return (
-    <div>
-      <Contribuintes></Contribuintes>
-    </div>
-  );
+   return (
+      <div>
+         <Contribuinte></Contribuinte>
+      </div>
+   );
 }
 
 export default App;
