@@ -15,11 +15,9 @@ E a pasta Front contém o Front feito em React
 
 Altere a string de configuração se necessário. Ela está no arquivo `\API\CalculadorImpostoRenda\CalculadorImpostoRenda.API\appsettings.json`.
 
-Por padrão a string de conexão é `"Server=(local)\\SQLEXPRESS;Database=CalculadorImpostoRendaDb;Integrated Security=True"`
-
 Para executar a API vá até a pasta `\API\CalculadorImpostoRenda\CalculadorImpostoRenda.API` e execute o comando `dotnet run`
 
-Agora se você abrir o endereço http://localhost:5000/swagger/index.html deve abrir uma página com os endpoints da API
+Agora se você abrir o endereço <http://localhost:5000/swagger/index.html> deve abrir uma página com os endpoints da API
 
 ## Como executar o Front
 

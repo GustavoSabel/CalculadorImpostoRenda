@@ -14,19 +14,26 @@ namespace CalculadorImpostoRenda
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _contentRootPath = env.ContentRootPath;
         }
 
         public IConfiguration Configuration { get; }
+
+        private readonly string _contentRootPath;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            var conn = Configuration.GetConnectionString("DefaultConnection");
+            if (conn.Contains("%CONTENTROOTPATH%"))
+                conn = conn.Replace("%CONTENTROOTPATH%", _contentRootPath);
+
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(conn));
 
             services.AddScoped<IContribuinteRepository, ContribuinteRepository>();
             services.AddScoped<IContribuinteRepositoryRead, ContribuinteRepository>();
